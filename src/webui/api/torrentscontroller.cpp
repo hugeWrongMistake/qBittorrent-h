@@ -45,6 +45,7 @@
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
+#include "base/bittorrent/torrentimpl.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
@@ -1421,4 +1422,21 @@ void TorrentsController::exportAction()
         throw APIError(APIErrorType::Conflict, tr("Unable to export torrent file. Error: %1").arg(result.error()));
 
     setResult(result.value());
+}
+
+void TorrentsController::setAddedTimeAction()
+{
+    requireParams({u"hash"_qs, u"newtime"_qs});
+
+    const QString newtimeStr {params()[u"newtime"_qs]};
+    
+    time_t newtime = newtimeStr.toLongLong();
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
+
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    torrent->setAddedTime(newtime);
 }

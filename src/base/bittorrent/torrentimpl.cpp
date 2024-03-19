@@ -40,6 +40,7 @@
 #include <libtorrent/session.hpp>
 #include <libtorrent/storage_defs.hpp>
 #include <libtorrent/time.hpp>
+#include <libtorrent/torrent.hpp>
 
 #ifdef QBT_USES_LIBTORRENT2
 #include <libtorrent/info_hash.hpp>
@@ -802,6 +803,13 @@ void TorrentImpl::removeAllTags()
 QDateTime TorrentImpl::addedTime() const
 {
     return QDateTime::fromSecsSinceEpoch(m_nativeStatus.added_time);
+}
+
+void TorrentImpl::setAddedTime(time_t newtime)
+{
+    m_nativeHandle.native_handle()->m_added_time = newtime;
+    m_nativeStatus.added_time = newtime;
+    m_session->handleTorrentNeedSaveResumeData(this);
 }
 
 qreal TorrentImpl::ratioLimit() const

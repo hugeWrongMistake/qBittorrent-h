@@ -1,0 +1,59 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/include/x86_64-linux-gnu/qt5",
+                "/usr/include/x86_64-linux-gnu/qt5/QtNetwork",
+                "/usr/include/x86_64-linux-gnu/qt5/QtSql",
+                "/usr/include/x86_64-linux-gnu/qt5/QtXml",
+                "/usr/include/x86_64-linux-gnu/qt5/QtCore",
+                "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"
+            ],
+            "defines": [
+                "_REENTRANT",
+                "QBT_USES_LIBTORRENT2",
+                "TORRENT_USE_LIBCRYPTO",
+                "TORRENT_USE_OPENSSL",
+                "TORRENT_SSL_PEERS",
+                "TORRENT_USE_I2P=1",
+                "BOOST_ALL_NO_LIB",
+                "BOOST_ASIO_ENABLE_CANCELIO",
+                "BOOST_ASIO_HAS_STD_CHRONO",
+                "BOOST_ASIO_NO_DEPRECATED",
+                "BOOST_MULTI_INDEX_DISABLE_SERIALIZATION",
+                "BOOST_SYSTEM_NO_DEPRECATED",
+                "TORRENT_LINKING_SHARED",
+                "DISABLE_GUI",
+                "STACKTRACE",
+                "QT_DISABLE_DEPRECATED_BEFORE=0x050f02",
+                "QT_NO_CAST_FROM_ASCII",
+                "QT_NO_CAST_TO_ASCII",
+                "QT_NO_CAST_FROM_BYTEARRAY",
+                "QT_NO_NARROWING_CONVERSIONS_IN_CONNECT",
+                "QT_USE_QSTRINGBUILDER",
+                "QT_STRICT_ITERATORS",
+                "QT_NETWORK_LIB",
+                "QT_SQL_LIB",
+                "QT_XML_LIB",
+                "QT_CORE_LIB"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "intelliSenseMode": "linux-gcc-x64",
+            "cppStandard": "gnu++17",
+            "cStandard": "gnu17",
+            "compilerArgs": [
+                "-c",
+                "-pipe",
+                "-Wall",
+                "-Wextra",
+                "-Wpedantic",
+                "-Wformat-security",
+                "-g",
+                "-fPIC"
+            ]
+        }
+    ],
+    "version": 4
+}

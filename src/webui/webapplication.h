@@ -205,6 +205,8 @@ private:
         {{u"transfer"_qs, u"setSpeedLimitsMode"_qs}, Http::METHOD_POST},
         {{u"transfer"_qs, u"setUploadLimit"_qs}, Http::METHOD_POST},
         {{u"transfer"_qs, u"toggleSpeedLimitsMode"_qs}, Http::METHOD_POST},
+        
+        {{u"torrents"_qs, u"setAddedTime"_qs}, Http::METHOD_POST},
     };
     bool m_isAltUIUsed = false;
     Path m_rootFolder;

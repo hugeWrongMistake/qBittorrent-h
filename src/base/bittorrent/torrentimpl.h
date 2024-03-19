@@ -129,6 +129,7 @@ namespace BitTorrent
         int piecesHave() const override;
         qreal progress() const override;
         QDateTime addedTime() const override;
+        void setAddedTime(time_t newtime) override;
         qreal ratioLimit() const override;
         int seedingTimeLimit() const override;
 
