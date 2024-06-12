@@ -58,5 +58,7 @@ namespace BitTorrent
 
         qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
         int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
+
+        QString peer_id;
     };
 }

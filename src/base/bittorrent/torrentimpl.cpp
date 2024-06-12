@@ -58,6 +58,7 @@
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
+#include "base/utils/myacc.h"
 #include "base/utils/string.h"
 #include "common.h"
 #include "downloadpriority.h"
@@ -303,6 +304,8 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
     for (const lt::announce_entry &announceEntry : extensionData->trackers)
         m_trackerEntries.append({QString::fromStdString(announceEntry.url), announceEntry.tier});
     m_nativeStatus = extensionData->status;
+
+    ::myacc::lt_torrent_handle_set_peer_id(m_nativeHandle, params.peer_id.toStdString().c_str());
 
     updateState();
 
@@ -1979,6 +1982,8 @@ void TorrentImpl::prepareResumeData(const lt::add_torrent_params &params)
         resumeData.savePath = m_savePath;
         resumeData.downloadPath = m_downloadPath;
     }
+    resumeData.peer_id = QString::fromStdString(
+        ::myacc::lt_torrent_handle_get_peer_id(m_nativeHandle).to_string());
 
     m_session->handleTorrentResumeDataReady(this, resumeData);
 }

@@ -180,6 +180,7 @@ SOURCES += \
     $$PWD/utils/gzip.cpp \
     $$PWD/utils/io.cpp \
     $$PWD/utils/misc.cpp \
+    $$PWD/utils/myacc.cpp \
     $$PWD/utils/net.cpp \
     $$PWD/utils/password.cpp \
     $$PWD/utils/random.cpp \

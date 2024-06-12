@@ -209,6 +209,8 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
     torrentParams.hasSeedStatus = resumeDataRoot.dict_find_int_value("qBt-seedStatus");
     torrentParams.firstLastPiecePriority = resumeDataRoot.dict_find_int_value("qBt-firstLastPiecePriority");
     torrentParams.seedingTimeLimit = resumeDataRoot.dict_find_int_value("qBt-seedingTimeLimit", Torrent::USE_GLOBAL_SEEDING_TIME);
+    if (auto node = resumeDataRoot.dict_find_string("qBt-peer_id"))
+        torrentParams.peer_id = fromLTString(node.string_value());
 
     torrentParams.savePath = Profile::instance()->fromPortablePath(
                 Path(fromLTString(resumeDataRoot.dict_find_string_value("qBt-savePath"))));
@@ -384,6 +386,7 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
     data["qBt-contentLayout"] = Utils::String::fromEnum(resumeData.contentLayout).toStdString();
     data["qBt-firstLastPiecePriority"] = resumeData.firstLastPiecePriority;
     data["qBt-stopCondition"] = Utils::String::fromEnum(resumeData.stopCondition).toStdString();
+    data["qBt-peer_id"] = resumeData.peer_id.toStdString();
 
     if (!resumeData.useAutoTMM)
     {
