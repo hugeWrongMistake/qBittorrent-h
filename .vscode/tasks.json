@@ -22,7 +22,8 @@
             "command": [
                 "qmake -o build/ &&",
                 "make --directory build -j4 &&",
-                "mv build/src/qbittorrent-nox src/"
+                "mv build/src/qbittorrent-nox src/ &&",
+                "strip src/qbittorrent-nox"
             ],
             "problemMatcher": [],
             "group": {
@@ -33,7 +34,7 @@
         {
             "label": "transfer to remote host",
             "type": "shell",
-            "command": "scp -P 2222 ${workspaceFolder}/src/qbittorrent-nox dd@127.0.0.1:~",
+            "command": "scp ${workspaceFolder}/src/qbittorrent-nox qbt-server.my:~",
             "problemMatcher": []
         }
     ]

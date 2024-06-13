@@ -738,6 +738,8 @@ qreal TorrentImpl::progress() const
         return 1.;
 
     const qreal progress = static_cast<qreal>(m_nativeStatus.total_wanted_done) / m_nativeStatus.total_wanted;
+    if(progress > 1.f)
+        return 1.f;
     Q_ASSERT((progress >= 0.f) && (progress <= 1.f));
     return progress;
 }
